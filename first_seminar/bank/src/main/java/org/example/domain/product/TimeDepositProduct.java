@@ -1,5 +1,6 @@
 package org.example.domain.product;
 
+import java.util.List;
 import java.util.NoSuchElementException;
 
 public class TimeDepositProduct extends Product {
@@ -10,6 +11,8 @@ public class TimeDepositProduct extends Product {
 
     public static final TimeDepositProduct happyTimeDepositProduct =
         new TimeDepositProduct(0, "행복 예금", 3.2f, 12);
+
+    public static final List<Product> products = List.of(happyTimeDepositProduct);
 
     public static TimeDepositProduct getInstance(int id) {
         if (id == 0) {

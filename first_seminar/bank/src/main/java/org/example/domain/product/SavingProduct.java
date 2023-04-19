@@ -1,5 +1,6 @@
 package org.example.domain.product;
 
+import java.util.List;
 import java.util.NoSuchElementException;
 
 public class SavingProduct extends Product {
@@ -12,6 +13,8 @@ public class SavingProduct extends Product {
 
     private static final SavingProduct studentSavingProduct =
         new SavingProduct(0, "학생 입출금", 0.2f);
+
+    public static final List<Product> products = List.of(studentSavingProduct);
 
     public static SavingProduct getInstance(int id) {
         if (id == 0) {
