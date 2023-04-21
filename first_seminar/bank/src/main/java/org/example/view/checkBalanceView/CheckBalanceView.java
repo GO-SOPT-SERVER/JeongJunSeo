@@ -9,12 +9,19 @@ public class CheckBalanceView {
         return inputView.inputAccountNumber();
     }
 
+    public void showWrongAccountNumber() {
+        outputView.showWrongAccountNumber();
+    }
+
     public String getPassword() {
         outputView.showPasswordRequest();
         return inputView.inputPassword();
     }
 
-    private void showBalance(Long balance) {
+    public void showWrongPassword(){
+        outputView.showWrongPassword();
+    }
+    public void showBalance(Long balance) {
         outputView.showBalance(balance);
     }
 

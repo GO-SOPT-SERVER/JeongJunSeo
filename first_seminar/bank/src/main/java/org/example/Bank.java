@@ -18,7 +18,6 @@ import java.util.NoSuchElementException;
 public class Bank {
 
     private static ArrayList<Account> accountList = new ArrayList<>();
-
     public void run() {
         MenuView menuView = new MenuView();
         int order = menuView.getMenuChoice();
@@ -38,7 +37,7 @@ public class Bank {
                 break;
             }
             case 4: {
-
+                checkBalance();
                 break;
             }
             default: {
@@ -82,8 +81,31 @@ public class Bank {
         builder.setProduct(product);
         Account newAccount = builder.build(accountType);
         accountList.add(newAccount);
-        creatorView.accountCreateSuccess();
+        creatorView.accountCreateSuccess(newAccount);
         return newAccount;
     }
 
+    private void checkBalance() {
+        CheckBalanceView checkBalanceView = new CheckBalanceView();
+        Account account = searchAccountByAccountNumber(checkBalanceView.getAccountNumber());
+        while (account == null) {
+            checkBalanceView.showWrongAccountNumber();
+            account = searchAccountByAccountNumber(checkBalanceView.getAccountNumber());
+        }
+        boolean isRightPwd = account.isCorrectPassword(checkBalanceView.getPassword());
+        while ( !isRightPwd ) {
+            checkBalanceView.showWrongPassword();
+            isRightPwd = account.isCorrectPassword(checkBalanceView.getPassword());
+        }
+        checkBalanceView.showBalance(account.getBalance());
+    }
+
+    private Account searchAccountByAccountNumber(String accountNumber) {
+        for (Account account : accountList) {
+            if (accountNumber.equals(account.getAccountNumber())) {
+                return account;
+            }
+        }
+        return null;
+    }
 }

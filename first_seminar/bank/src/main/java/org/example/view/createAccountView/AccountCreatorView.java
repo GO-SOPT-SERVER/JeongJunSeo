@@ -1,6 +1,7 @@
 package org.example.view.createAccountView;
 
 import java.util.List;
+import org.example.domain.account.Account;
 import org.example.domain.product.Product;
 
 public class AccountCreatorView {
@@ -42,7 +43,7 @@ public class AccountCreatorView {
         return inputView.inputAmount();
     }
 
-    public void accountCreateSuccess() {
-        outputView.showCreateSuccess();
+    public void accountCreateSuccess(Account account) {
+        outputView.showCreateSuccess(account);
     }
 }

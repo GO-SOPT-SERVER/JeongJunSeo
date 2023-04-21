@@ -51,9 +51,12 @@ public class AccountCreatorOutputView extends CommonOutputView {
         System.out.println("======================");
     }
 
-    public void showCreateSuccess() {
+    public void showCreateSuccess(Account account) {
         System.out.println("======================");
         System.out.println("계좌가 개설되었습니다.");
+        System.out.println("----------------------");
+        System.out.printf("계좌번호: %s\n", account.getAccountNumber());
+        System.out.printf("개설일: %s\n", account.getCreatedDate());
         System.out.println("======================");
     }
 }
