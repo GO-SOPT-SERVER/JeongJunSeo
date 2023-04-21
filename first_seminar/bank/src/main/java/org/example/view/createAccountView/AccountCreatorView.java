@@ -7,7 +7,7 @@ public class AccountCreatorView {
     private AccountCreatorOutputView outputView = new AccountCreatorOutputView();
     private AccountCreatorInputView inputView = new AccountCreatorInputView();
 
-    public int getAccountType() {
+    public AccountType getAccountType() {
         outputView.showAccountType();
         return inputView.inputAccountType();
     }
@@ -40,5 +40,9 @@ public class AccountCreatorView {
     public long getTimeAmount() {
         outputView.showTimeAmountRequest();
         return inputView.inputAmount();
+    }
+
+    public void accountCreateSuccess() {
+        outputView.showCreateSuccess();
     }
 }

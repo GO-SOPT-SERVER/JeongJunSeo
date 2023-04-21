@@ -1,37 +1,89 @@
 package org.example;
 
-import org.example.domain.account.SavingAccount;
+import java.util.ArrayList;
+import org.example.domain.account.Account;
+import org.example.domain.product.InstallmentSavingProduct;
+import org.example.domain.product.Product;
 import org.example.domain.product.SavingProduct;
+import org.example.domain.product.TimeDepositProduct;
+import org.example.view.checkBalanceView.CheckBalanceView;
+import org.example.view.createAccountView.AccountBuilder;
+import org.example.view.createAccountView.AccountCreatorOutputView;
 import org.example.view.createAccountView.AccountCreatorView;
+import org.example.view.createAccountView.AccountType;
 import org.example.view.menuView.MenuView;
 
+import java.util.NoSuchElementException;
+
 public class Bank {
+
+    private static ArrayList<Account> accountList = new ArrayList<>();
 
     public void run() {
         MenuView menuView = new MenuView();
         int order = menuView.getMenuChoice();
 
-        AccountCreatorView accountCreatorView = new AccountCreatorView();
-
-        int accountType = -1;
-        if (order == 3) {
-            accountType = accountCreatorView.getAccountType();
-        }
-
-        int productId = -1;
-        switch (accountType) {
-            case 0:
-                productId = accountCreatorView.getProductType(SavingProduct.products);
+        switch (order) {
+            case 0: {
                 break;
+            }
+            case 1: {
+                break;
+            }
+            case 2: {
+                break;
+            }
+            case 3: {
+                createAccount();
+                break;
+            }
+            case 4: {
+
+                break;
+            }
+            default: {
+                break;
+            }
         }
 
-        String name = accountCreatorView.getName();
-        String password = accountCreatorView.getPassword();
-        Long initBalance = accountCreatorView.getInitialAmount();
+        run();
+    }
 
-        SavingAccount savingAccount = new SavingAccount(password, name, initBalance,
-            SavingProduct.getInstance(productId));
+    private Account createAccount() {
+        AccountCreatorView creatorView = new AccountCreatorView();
+        AccountType accountType = creatorView.getAccountType();
 
+        Product product;
+        AccountBuilder builder = new AccountBuilder();
+        switch (accountType) {
+            case SAVING: {
+                int productId = creatorView.getProductType(SavingProduct.products);
+                product = SavingProduct.getInstance(productId);
+                break;
+            }
+            case INSTALLMENT: {
+                int productId = creatorView.getProductType(InstallmentSavingProduct.products);
+                product = InstallmentSavingProduct.getInstance(productId);
+                break;
+            }
+            case TIME: {
+                int productId = creatorView.getProductType(TimeDepositProduct.products);
+                product = TimeDepositProduct.getInstance(productId);
+                break;
+            }
+            default: {
+                throw new NoSuchElementException("없는 계좌 타입입니다.");
+            }
+        }
+
+        builder.setAccountHolder(creatorView.getName());
+        builder.setPassword(creatorView.getPassword());
+        builder.setInitBalance(creatorView.getInitialAmount());
+        builder.setProduct(product);
+        Account newAccount = builder.build(accountType);
+        accountList.add(newAccount);
+        creatorView.accountCreateSuccess();
+        return newAccount;
     }
 
 }

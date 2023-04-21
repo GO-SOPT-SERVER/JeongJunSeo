@@ -1,5 +1,6 @@
 package org.example.view.createAccountView;
 
+import org.example.domain.account.Account;
 import org.example.domain.product.Product;
 import org.example.view.common.CommonOutputView;
 
@@ -47,6 +48,12 @@ public class AccountCreatorOutputView extends CommonOutputView {
     public void showTimeAmountRequest() {
         System.out.println("======================");
         System.out.println("예금액을 입력하세요.");
+        System.out.println("======================");
+    }
+
+    public void showCreateSuccess() {
+        System.out.println("======================");
+        System.out.println("계좌가 개설되었습니다.");
         System.out.println("======================");
     }
 }

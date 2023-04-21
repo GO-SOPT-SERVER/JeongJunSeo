@@ -4,12 +4,12 @@ public class CheckBalanceView {
     private CheckBalanceInputView inputView = new CheckBalanceInputView();
     private CheckBalanceOutputView outputView = new CheckBalanceOutputView();
 
-    private String getAccountNumber() {
+    public String getAccountNumber() {
         outputView.showAccountNumberRequest();
         return inputView.inputAccountNumber();
     }
 
-    private String getPassword() {
+    public String getPassword() {
         outputView.showPasswordRequest();
         return inputView.inputPassword();
     }

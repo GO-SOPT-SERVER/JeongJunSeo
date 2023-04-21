@@ -58,4 +58,5 @@ public abstract class Account {
     public boolean isCorrectPassword(String input) {
         return this.password.equals(input);
     }
+
 }
