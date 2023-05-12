@@ -1,4 +1,8 @@
 spring:
+  profiles:
+    active: set1
+---
+spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: ${db-url}
@@ -12,3 +16,48 @@ spring:
     properties:
       hibernate:
         format_sql: true
+
+server:
+  port: 8080
+
+---
+spring:
+  profiles: set1
+
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: ${db-url}
+    username: ${db-username}
+    password: ${db-password}
+
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        format_sql: true
+
+server:
+  port: 8081
+
+---
+spring:
+  profiles: set2
+
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: ${db-url}
+    username: ${db-username}
+    password: ${db-password}
+
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        format_sql: true
+
+server:
+  port: 8082
