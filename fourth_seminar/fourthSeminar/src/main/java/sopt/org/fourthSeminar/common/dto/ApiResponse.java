@@ -17,7 +17,7 @@ public class ApiResponse<T> {
     private T data;
 
     public static ApiResponse success(Success success) {
-        return new ApiResponse<>(success.hashCode(), success.getMessage());
+        return new ApiResponse<>(success.getHttpStatusCode(), success.getMessage());
     }
 
     public static <T> ApiResponse<T> success(Success success, T data) {

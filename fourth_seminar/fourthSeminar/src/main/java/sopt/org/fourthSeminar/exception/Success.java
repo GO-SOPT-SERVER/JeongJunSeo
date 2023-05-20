@@ -10,6 +10,11 @@ import org.springframework.http.HttpStatus;
 public enum Success {
 
     /**
+     * 200 OK
+     */
+    LOGIN_SUCCESS(HttpStatus.OK, "로그인 성공"),
+
+    /**
      * 201 CREATED
      */
     SIGNUP_SUCCESS(HttpStatus.CREATED, "회원가입이 완료됐습니다."),

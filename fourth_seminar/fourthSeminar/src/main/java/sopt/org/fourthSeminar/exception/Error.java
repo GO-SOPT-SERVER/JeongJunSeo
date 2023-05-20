@@ -15,6 +15,12 @@ public enum Error {
     REQUEST_VALIDATION_EXCEPTION(HttpStatus.BAD_REQUEST, "잘못된 요청입니다"),
 
     /**
+     * 401 UNAUTHORIZED
+     */
+    TOKEN_TIME_EXPIRED_EXCEPTION(HttpStatus.UNAUTHORIZED, "검증되지 않은 유저입니다"),
+    INVALID_PASSWORD_EXCEPTION(HttpStatus.UNAUTHORIZED,  "비밀번호가 일치하지 않습니다"),
+
+    /**
      * 404 NOT FOUND
      */
     NOT_FOUND_USER_EXCEPTION(HttpStatus.NOT_FOUND, "존재하지 않는 유저입니다"),
